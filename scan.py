@@ -88,4 +88,4 @@ def main():
 
 if __name__ == '__main__':
     main()
-    print("--- %s seconds ---" % round((time.time() - startTime), 2))
+    print(f'--- {round((time.time() - startTime), 2)} seconds ---')
