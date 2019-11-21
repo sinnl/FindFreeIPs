@@ -5,7 +5,7 @@ Puprpose of this program is to find IPs that can be allocated to a server as sta
 Program cheks IPs:
   - using ping
   - performing DNS lookup
-  - checking if nay of the below ports is listening:
+  - checking if any of the below ports is listening:
       - 22
       - 3389
       - 80
