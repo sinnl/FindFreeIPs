@@ -77,7 +77,7 @@ def outTable():
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('subnet', help="Prvide first 3 octets of subnet you want to scan e.g. 10.33.40")
-    parser.add_argument('--netmask', help="Provide netmask value (excepted values - 24, 23, 22, defulats to 24 if not specyfied)", default=24, type=int)
+    parser.add_argument('-n', '--netmask', help="Provide netmask value (excepted values - 24, 23, 22, defulats to 24 if not specyfied)", default=24, type=int)
     args = parser.parse_args()
 
     pingCheck(args.subnet, args.netmask)
