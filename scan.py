@@ -1,3 +1,4 @@
+#!/user/bin/env python3
 from ping3 import ping
 from joblib import Parallel, delayed
 from socket import gethostbyaddr as lookup

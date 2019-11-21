@@ -11,4 +11,4 @@ Program cheks IPs:
       - 80
       - 443
 
-When run on clients (windows, macos) or UNIX as non-root user, pleas execute with **sudo**.
+When run on clients (macos) or UNIX as non-root user, pleas execute with **sudo**.
