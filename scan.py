@@ -93,10 +93,10 @@ def outLog(path):
     f = open(file, 'a')
     for k,v in available.items():
         f.write(f'{k},{v}\n')
-    f.write(f'--- {round((time.time() - startTime), 2)} seconds ---')
+    f.write(f'--- {round((time.time() - startTime), 2)} seconds ---\n')
     f.close()
 
-    print(f'Log file have been saved in {file}\n')
+    print(f'Log file have been saved in {file}')
 
 def main():
     parser = argparse.ArgumentParser()
