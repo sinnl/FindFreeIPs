@@ -94,8 +94,9 @@ def outLog(path):
     f = open(file, 'a')
     for k,v in available.items():
         f.write(f'{k},{v}\n')
+    f.write(f'--- {round((time.time() - startTime), 2)} seconds ---')
     f.close()
-    print(f'--- {round((time.time() - startTime), 2)} seconds ---')
+    
     print(f'Log file have been saved in {file}')
 
 def main():
