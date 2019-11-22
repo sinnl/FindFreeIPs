@@ -96,7 +96,7 @@ def outLog(path):
     f.write(f'--- {round((time.time() - startTime), 2)} seconds ---')
     f.close()
 
-    print(f'Log file have been saved in {file}')
+    print(f'Log file have been saved in {file}\n')
 
 def main():
     parser = argparse.ArgumentParser()
