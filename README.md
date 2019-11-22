@@ -23,7 +23,14 @@ Program checks IPs:
       - 443
 
 ## Important
-When run on clients (macos) or UNIX as non-root user, pleas execute with **sudo**.
+When running on clients (macos) or UNIX as non-root user, pleas execute with **sudo**.
+
+When runnning on clients and smaller sevrers consider adjusting number of threads (**n_jobs**), in all instances of **Parallel** (4 in total) so that program does not creash your system. Code examples below
+
+```python
+Parallel(n_jobs=50, prefer="threads")(delayed(pingTest)(f"{sub}.{i}") for i in range(10, 255))
+Parallel(n_jobs=50, prefer="threads", timeout=2)(delayed(checkPort)(k, port) for k in available.keys()
+```
 
 ## Output
 
