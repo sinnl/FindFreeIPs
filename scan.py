@@ -100,12 +100,14 @@ def outLog(path):
 
 def main():
     parser = argparse.ArgumentParser()
-    group = parser.add_mutually_exclusive_group()
-    group.add_argument('-q', '--quiet', action="store_true", help="Output stored in file only")
+    parser.add_argument('-q', '--quiet', action="store_true", help="Output stored in file only. Requires -o/--output")
     parser.add_argument('subnet', help="Prvide first 3 octets of subnet you want to scan e.g. 10.33.40")
     parser.add_argument('-n', '--netmask', help="Provide netmask value (excepted values - 24, 23, 22, defulats to 24 if not specyfied)", default=24, type=int)
     parser.add_argument('-o', '--out', help="Proivde path to store output file.")
     args = parser.parse_args()
+
+    if ('quiet' in vars(args) and 'output' not in vars(args)):
+        parser.error('The -q/--quiet option requires -o/--output to be defined')
 
     pingCheck(args.subnet, args.netmask)
     portsCheck()

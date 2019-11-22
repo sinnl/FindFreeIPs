@@ -12,3 +12,8 @@ Program cheks IPs:
       - 443
 
 When run on clients (macos) or UNIX as non-root user, pleas execute with **sudo**.
+
+By default program outputs to stdout in the form of the table. There is option to write optput to file as well.
+This creates csv file in location defined in -o/--ouput switch.
+
+Finally -q/--quiet switch supresses stdout and writes to log only.
