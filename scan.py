@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from ping3 import ping
 from joblib import Parallel, delayed
 from socket import gethostbyaddr as lookup
@@ -6,6 +7,9 @@ import time
 import  socket
 from prettytable import PrettyTable
 import argparse
+from pathlib import Path
+import sys
+import re
 
 available = {}
 startTime = time.time()
@@ -72,20 +76,48 @@ def outTable():
 
     x.sortby = 'AVAILABLE IPs'
     print(x)
+    print(f'--- {round((time.time() - startTime), 2)} seconds ---')
     return True
+
+def checkPath(path):
+    try:
+        p = Path(path)
+        if p.is_dir():
+            return re.sub(r'\/$', '', path)
+    except:
+        print(f'{path} does not exist. Please correct the path or create necessary folder structure.')
+        sys.exit()
+
+def outLog(path):
+    p = checkPath(path)
+    file = path + '/' + 'subnetScan.csv'
+    f = open(file, 'a')
+    for k,v in available.items():
+        f.write(f'{k},{v}\n')
+    f.close()
+    print(f'--- {round((time.time() - startTime), 2)} seconds ---')
+    print(f'Log file have been saved in {file}')
 
 def main():
     parser = argparse.ArgumentParser()
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument('-q', '--quiet', action="store_true", help="Output stored in file only")
     parser.add_argument('subnet', help="Prvide first 3 octets of subnet you want to scan e.g. 10.33.40")
     parser.add_argument('-n', '--netmask', help="Provide netmask value (excepted values - 24, 23, 22, defulats to 24 if not specyfied)", default=24, type=int)
+    parser.add_argument('-o', '--out', help="Proivde path to store output file.")
     args = parser.parse_args()
 
     pingCheck(args.subnet, args.netmask)
     portsCheck()
-    outTable()
 
+    if args.quiet:
+        outLog(args.out)
+    elif not args.out == '':
+        outTable()
+        outLog(args.out)
+    else:
+        outTable()
 
 
 if __name__ == '__main__':
     main()
-    print(f'--- {round((time.time() - startTime), 2)} seconds ---')
