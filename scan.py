@@ -2,12 +2,11 @@
 from ping3 import ping
 from joblib import Parallel, delayed
 from socket import gethostbyaddr as lookup
-from contextlib import closing
-import time
-import  socket
 from prettytable import PrettyTable
-import argparse
 from pathlib import Path
+import time
+import socket
+import argparse
 import sys
 import re
 
@@ -96,7 +95,7 @@ def outLog(path):
         f.write(f'{k},{v}\n')
     f.write(f'--- {round((time.time() - startTime), 2)} seconds ---')
     f.close()
-    
+
     print(f'Log file have been saved in {file}')
 
 def main():
