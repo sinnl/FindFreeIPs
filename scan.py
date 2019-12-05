@@ -106,7 +106,7 @@ def main():
     parser.add_argument('-o', '--out', help="Proivde path to store output file.")
     args = parser.parse_args()
 
-    if ('quiet' in vars(args) and vars(args)['out'] == None):
+    if (args.quiet and args.quiet == None):
         parser.error('The -q/--quiet option requires -o/--out to be defined')
 
     pingCheck(args.subnet, args.netmask)
@@ -114,7 +114,7 @@ def main():
 
     if args.quiet:
         outLog(args.out)
-    elif not args.out == '':
+    elif not args.out == None:
         outTable()
         outLog(args.out)
     else:
